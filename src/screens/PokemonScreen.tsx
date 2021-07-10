@@ -11,9 +11,10 @@ import {
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FadeInImage} from '../components/FadeInImage';
-import {RootStackParams} from '../navigator/Navigation';
+import {RootStackParams} from '../navigator/TabList';
 import {usePokemon} from '../hooks/usePokemon';
 import {PokemonDetails} from '../components/PokemonDetails';
+import LottieView from 'lottie-react-native';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 
@@ -66,7 +67,11 @@ export const PokemonScreen = ({
       {/* Detalles y Loading */}
       {isLoading ? (
         <View style={styles.loadingIndicator}>
-          <ActivityIndicator color={color} size={50} />
+          <LottieView
+            source={require('../assets/loading.json')}
+            loop
+            autoPlay
+          />
         </View>
       ) : (
         <PokemonDetails pokemon={pokemon} />
